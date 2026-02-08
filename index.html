@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyseliny, zásady a soli – přetahování</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+/* HLAVNÍ KONTEJNER */
+.container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* CÍLOVÉ BOXÍKY */
+.box {
+    flex: 1 1 250px;
+    max-width: 350px;
+    min-height: 220px;
+    background: white;
+    border: 2px dashed #999;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.box h2 {
+    margin-top: 5px;
+}
+
+/* POLOŽKY */
+#items {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.item {
+    background: #dfefff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: grab;
+    font-size: 1.1rem;
+    user-select: none;
+    touch-action: none;
+}
+
+.correct {
+    background: #c8f7c5;
+}
+
+.wrong {
+    background: #f7c5c5;
+}
+
+/* MOBILNÍ ÚPRAVY */
+@media (max-width: 600px) {
+    .box {
+        max-width: 100%;
+    }
+
+    .item {
+        font-size: 1.2rem;
+        padding: 14px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Roztřiď látky</h1>
+<p>Přetáhni vzorce do správné skupiny.</p>
+
+<div class="container">
+    <div class="box" data-type="kyselina" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Kyseliny</h2>
+    </div>
+
+    <div class="box" data-type="zasada" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Zásady</h2>
+    </div>
+
+    <div class="box" data-type="sul" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Soli</h2>
+    </div>
+</div>
+
+<div id="items">
+    <div class="item" draggable="true" data-type="kyselina" ondragstart="drag(event)">HCl</div>
+    <div class="item" draggable="true" data-type="kyselina" ondragstart="drag(event)">H₂SO₄</div>
+
+    <div class="item" draggable="true" data-type="zasada" ondragstart="drag(event)">NaOH</div>
+    <div class="item" draggable="true" data-type="zasada" ondragstart="drag(event)">KOH</div>
+
+    <div class="item" draggable="true" data-type="sul" ondragstart="drag(event)">NaCl</div>
+    <div class="item" draggable="true" data-type="sul" ondragstart="drag(event)">CaCO₃</div>
+</div>
+
+<script>
+let draggedItem = null;
+
+function drag(event) {
+    draggedItem = event.target;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    const boxType = event.currentTarget.dataset.type;
+    const itemType = draggedItem.dataset.type;
+
+    event.currentTarget.appendChild(draggedItem);
+
+    if (boxType === itemType) {
+        draggedItem.classList.remove("wrong");
+        draggedItem.classList.add("correct");
+    } else {
+        draggedItem.classList.remove("correct");
+        draggedItem.classList.add("wrong");
+    }
+}
+</script>
+
+</body>
+</html>
