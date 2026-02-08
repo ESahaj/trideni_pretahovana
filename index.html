@@ -3,60 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kyseliny, zásady a soli – přetahování</title>
+<title>Kyseliny, zásady a soli</title>
 
 <style>
 body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
     margin: 0;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
 }
 
 h1 {
-    margin-top: 10px;
+    font-size: 1.2rem;
+    margin: 5px 0;
 }
 
-/* HLAVNÍ KONTEJNER */
+p {
+    font-size: 0.9rem;
+    margin: 5px 0 10px;
+}
+
+/* CÍLOVÉ BOXY – VŽDY V JEDNÉ ŘADĚ */
 .container {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
 }
 
-/* CÍLOVÉ BOXÍKY */
+/* BOX */
 .box {
-    flex: 1 1 250px;
-    max-width: 350px;
-    min-height: 220px;
     background: white;
     border: 2px dashed #999;
-    border-radius: 12px;
-    padding: 10px;
+    border-radius: 10px;
+    min-height: 110px;
+    padding: 5px;
+    font-size: 0.85rem;
 }
 
 .box h2 {
-    margin-top: 5px;
+    margin: 3px 0;
+    font-size: 0.9rem;
+}
+
+/* VÝBĚR LÁTEK */
+#items {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
 }
 
 /* POLOŽKY */
-#items {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
 .item {
     background: #dfefff;
-    padding: 12px 16px;
+    padding: 10px 5px;
     border-radius: 10px;
+    font-size: 1rem;
     cursor: grab;
-    font-size: 1.1rem;
     user-select: none;
     touch-action: none;
 }
@@ -67,18 +71,6 @@ h1 {
 
 .wrong {
     background: #f7c5c5;
-}
-
-/* MOBILNÍ ÚPRAVY */
-@media (max-width: 600px) {
-    .box {
-        max-width: 100%;
-    }
-
-    .item {
-        font-size: 1.2rem;
-        padding: 14px 18px;
-    }
 }
 </style>
 </head>
